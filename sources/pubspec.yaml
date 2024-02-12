@@ -16,6 +16,7 @@ dependencies:
   riverpod_annotation: ^2.3.4
   riverpod_generator: ^2.3.11
   riverpod_lint: ^2.3.9
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
