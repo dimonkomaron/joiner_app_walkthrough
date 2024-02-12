@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:io' show Platform;
 
 import 'package:joiner_app_walkthrough/features/home/widgets/home_page.dart';
 import 'package:joiner_app_walkthrough/features/questionnaire/questions_list/questions_page.dart';
@@ -34,17 +33,19 @@ class IntroductionRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const QuestionPage();
+    return const QuestionsPage(page: 0);
   }
 }
 
 class QuestionRoute extends GoRouteData {
   final int page;
-  const QuestionRoute({required this.page});
+  const QuestionRoute({
+    required this.page,
+  });
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const QuestionPage();
+    return QuestionsPage(page: page);
   }
 }
 
