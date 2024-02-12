@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,6 +48,28 @@ class QuestionRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return QuestionsPage(page: page);
+  }
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    if (Platform.isAndroid) {
+      return CustomTransitionPage(
+        child: QuestionsPage(page: page),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(1.0, 0.0);
+          const end = Offset.zero;
+          const curve = Curves.ease;
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+      );
+    } else {
+      return super.buildPage(context, state);
+    }
   }
 }
 
