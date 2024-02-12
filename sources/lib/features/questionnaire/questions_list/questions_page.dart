@@ -61,7 +61,10 @@ class _BottomNextActionBar extends ConsumerWidget {
     return SafeArea(
       bottom: true,
       child: Padding(
-        padding: const EdgeInsets.all(23.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 23.0,
+          vertical: 10,
+        ),
         child: JoinerAppButton(
           onPressed: flowPagesStateController.when(
             loading: () => null,

@@ -10,7 +10,6 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       body: JoinerAppContainer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -28,14 +27,19 @@ class HomePage extends ConsumerWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: JoinerAppButton(
-                onPressed: () {
-                  ref.read(homeProvider.notifier).openQuestionnaire();
-                },
-                text: 'Start',
-                fontSize: 25,
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 23.0,
+                  vertical: 10,
+                ),
+                child: JoinerAppButton(
+                  onPressed: () {
+                    ref.read(homeProvider.notifier).openQuestionnaire();
+                  },
+                  text: 'Start',
+                  fontSize: 25,
+                ),
               ),
             ),
           ],
