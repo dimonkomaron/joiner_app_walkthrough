@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:joiner_app_walkthrough/colors.dart';
 import 'package:joiner_app_walkthrough/controls/joiner_app_radio_button.dart';
-import 'package:joiner_app_walkthrough/features/questionnaire/questions_list/providers/flow_page_state_controller_provider.dart';
+import 'package:joiner_app_walkthrough/features/questionnaire/questions_list/providers/questions_page_state_controller_provider.dart';
 
 class QuestionListWidget extends ConsumerWidget {
   final Function(String item)? onSelect;
@@ -16,7 +16,7 @@ class QuestionListWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var modelAsync = ref.watch(flowPagesStateControllerProvider(page));
+    var modelAsync = ref.watch(questionsPageStateControllerProvider(page));
     return modelAsync.when(
       error: (e, st) => Container(color: Colors.transparent),
       loading: () => Container(color: Colors.transparent),
