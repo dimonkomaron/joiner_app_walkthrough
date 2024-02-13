@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:joiner_app_walkthrough/colors.dart';
-import 'package:joiner_app_walkthrough/controls/joiner_app_radio_button.dart';
+import 'package:joiner_app_walkthrough/controls/joiner_app_radio_list_tile.dart';
 import 'package:joiner_app_walkthrough/features/questionnaire/questions_list/providers/questions_page_state_controller_provider.dart';
 
 class QuestionListWidget extends ConsumerWidget {
@@ -45,9 +45,12 @@ class QuestionListWidget extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   final isSelected =
                       model.question.options[index] == model.selectedOption;
-                  return ListTile(
-                    onTap: () => onSelect?.call(model.question.options[index]),
-                    tileColor: Colors.transparent,
+
+                  return JoinerAppRadioListTile<String?>(
+                    value: model.question.options.elementAt(index),
+                    groupValue: model.selectedOption,
+                    onChanged: (value) =>
+                        onSelect?.call(model.question.options[index]),
                     title: Text(
                       model.question.options[index],
                       style: TextStyle(
@@ -58,29 +61,6 @@ class QuestionListWidget extends ConsumerWidget {
                             ? Colors.white
                             : JoinerAppColors.palePurple,
                       ),
-                    ),
-                    selected: isSelected,
-                    trailing: CustomRadio(
-                      selectedColor: Colors.white,
-                      radioBackgroundColor: Color.fromARGB(
-                        76,
-                        JoinerAppColors.palePurple.red,
-                        JoinerAppColors.palePurple.green,
-                        JoinerAppColors.palePurple.blue,
-                      ),
-                      selectedBackgroundColor: Color.fromARGB(
-                        51,
-                        JoinerAppColors.palePurple.red,
-                        JoinerAppColors.palePurple.green,
-                        JoinerAppColors.palePurple.blue,
-                      ),
-                      borderColor:
-                          isSelected ? Colors.white : const Color(0x4DFFFFFF),
-                      borderWidth: 2,
-                      value: model.question.options.elementAt(index),
-                      groupValue: model.selectedOption,
-                      onChanged: (value) =>
-                          onSelect?.call(model.question.options[index]),
                     ),
                   );
                 },
