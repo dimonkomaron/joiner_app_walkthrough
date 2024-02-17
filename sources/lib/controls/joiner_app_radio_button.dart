@@ -6,7 +6,7 @@ class JoinerAppRadio<T> extends StatefulWidget {
   final T groupValue;
   final void Function(T)? onChanged;
 
-  final int? size;
+  final double? size;
   final Color? radioBackgroundColor;
   final Color? selectedColor;
   final Color? selectedBackgroundColor;
@@ -35,16 +35,24 @@ class JoinerAppRadioState extends State<JoinerAppRadio> {
   static const Color _defaultRadioButtonColor = Colors.transparent;
   static const Color _defaultSelectedRadioButton = Colors.white;
 
-  final Color _defaultBackgroundColor =
-      JoinerAppColors.palePurple.withAlpha(76);
-  final Color _defaultUnselectedBackgroundColor =
-      JoinerAppColors.palePurple.withAlpha(51);
+  Color? _defaultBackgroundColor;
+  Color? _defaultUnselectedBackgroundColor;
 
   @override
   Widget build(BuildContext context) {
+    Color? color = Theme.of(context)
+        .radioTheme
+        .fillColor
+        ?.resolve(<MaterialState>{}..add(MaterialState.focused));
+
+    color = color ?? JoinerAppColors.palePurple;
+    _defaultBackgroundColor = _defaultBackgroundColor ?? color.withAlpha(76);
+    _defaultUnselectedBackgroundColor =
+        _defaultUnselectedBackgroundColor ?? color.withAlpha(51);
+
     bool selected = widget.value == widget.groupValue;
-    final radioButtonContainer = _getContainer(selected);
-    return radioButtonContainer;
+
+    return _getContainer(selected);
   }
 
   Widget _getContainer(bool selected) {
@@ -62,7 +70,7 @@ class JoinerAppRadioState extends State<JoinerAppRadio> {
       ),
       child: Icon(
         Icons.circle,
-        size: 20,
+        size: widget.size,
         color: selected
             ? widget.selectedColor ?? _defaultSelectedRadioButton
             : widget.radioBackgroundColor ?? _defaultRadioButtonColor,

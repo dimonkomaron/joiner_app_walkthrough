@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:joiner_app_walkthrough/colors.dart';
 
 class QuestionnaireAppBar extends AppBar {
   QuestionnaireAppBar({
@@ -7,7 +6,6 @@ class QuestionnaireAppBar extends AppBar {
     VoidCallback? back,
     VoidCallback? skip,
   }) : super(
-          backgroundColor: JoinerAppColors.purple,
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios_new,
@@ -22,7 +20,6 @@ class QuestionnaireAppBar extends AppBar {
                 'Skip for now',
                 textAlign: TextAlign.right,
                 style: TextStyle(
-                  color: JoinerAppColors.orange,
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),

@@ -33,6 +33,7 @@ class JoinerAppRadioListTile<T> extends StatelessWidget {
         groupValue: groupValue,
         borderColor: isSelected ? Colors.white : const Color(0x4DFFFFFF),
         selectedColor: Colors.white,
+        size: 15,
         borderWidth: 2,
       ),
     );
